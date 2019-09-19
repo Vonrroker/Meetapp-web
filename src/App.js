@@ -1,4 +1,5 @@
 import React from 'react';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 
@@ -8,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import history from './services/history';
 import Routes from './Routes';
 
-import store from './store';
+import { store, persistor } from './store';
 
 import 'react-toastify/dist/ReactToastify.css';
 import GlobalStyles from './styles/global';
@@ -16,11 +17,13 @@ import GlobalStyles from './styles/global';
 function App() {
   return (
     <Provider store={store}>
-      <Router history={history}>
-        <Routes />
-        <ToastContainer />
-        <GlobalStyles />
-      </Router>
+      <PersistGate persistor={persistor}>
+        <Router history={history}>
+          <Routes />
+          <ToastContainer />
+          <GlobalStyles />
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }

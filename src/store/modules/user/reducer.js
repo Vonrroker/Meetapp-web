@@ -13,6 +13,16 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.email = action.payload.user.email;
         break;
       }
+      case '@user/UPDATE_SUCCESS': {
+        draft.name = action.payload.user.name;
+        draft.email = action.payload.user.email;
+        break;
+      }
+      case '@auth/SIGN_OUT': {
+        draft.name = null;
+        draft.email = null;
+        break;
+      }
       default:
     }
   });

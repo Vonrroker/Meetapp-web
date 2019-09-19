@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: rgba(0, 0, 0, 0.3);
+  background: #170e1a;
   padding: 0 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 `;
 
 export const Content = styled.div`
-  height: 92px;
+  height: 80px;
   max-width: 900px;
   margin: 0 auto;
   display: flex;
