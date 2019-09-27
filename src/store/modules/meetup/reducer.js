@@ -25,7 +25,7 @@ export default function meetup(state = INITIAL_STATE, action) {
 
           return {
             ...m,
-            formatedDate: format(date, "d 'de' MMMM 'às' hh'h'", {
+            formatedDate: format(date, "d 'de' MMMM 'às' HH:mm", {
               locale: pt,
             }),
           };
@@ -49,6 +49,26 @@ export default function meetup(state = INITIAL_STATE, action) {
 
         draft.meetups.splice(index, 1);
         console.tron.log('chegou1');
+        break;
+      }
+
+      case '@meetup/UPDATE_SUCCESS': {
+        const dataMeetup = action.payload.meetup;
+
+        const { id } = action.payload.meetup;
+        const index = draft.meetups.findIndex(m => String(m.id) === String(id));
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        draft.meetups[index] = {
+          ...dataMeetup,
+          formatedDate: format(
+            utcToZonedTime(dataMeetup.date, timezone),
+            "d 'de' MMMM 'às' HH:mm",
+            {
+              locale: pt,
+            }
+          ),
+        };
         break;
       }
 

@@ -42,7 +42,7 @@ export const Container = styled.div`
         color: rgba(255, 255, 255, 0.5);
       }
     }
-    div {
+    .buttonSubmit {
       display: flex;
       justify-content: flex-end;
 

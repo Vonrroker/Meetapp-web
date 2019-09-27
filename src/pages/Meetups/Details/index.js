@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Container, HeaderMeetups, Banner, InfoMeetup } from './styles';
 import { meetupDeleteRequest } from '~/store/modules/meetup/actions';
+import history from '~/services/history';
 
 export default function Details({ match }) {
   const { id } = match.params;
@@ -16,12 +17,16 @@ export default function Details({ match }) {
     dispatch(meetupDeleteRequest(id));
   }
 
+  function handleEdit() {
+    history.push(`/meetups/${id}/edit`);
+  }
+
   return (
     <Container>
       <HeaderMeetups>
         <span>{meetup.title}</span>
         <div>
-          <button type="button" className="editar">
+          <button type="button" className="editar" onClick={handleEdit}>
             Editar
           </button>
           <button type="button" className="cancelar" onClick={handleDelete}>

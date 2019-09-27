@@ -5,6 +5,7 @@ import {
   meetupSuccess,
   meetupCreateSuccess,
   meetupDeleteSuccess,
+  meetupUpdateSuccess,
 } from './actions';
 import history from '~/services/history';
 
@@ -46,8 +47,23 @@ function* deleteMeetup({ payload }) {
   }
 }
 
+function* updateMeetup({ payload }) {
+  try {
+    const { id, ...rest } = payload.meetup;
+    const response = yield call(api.put, `meetups/${id}`, rest);
+
+    const { data } = response;
+    yield put(meetupUpdateSuccess(data));
+    toast.success('Meetup atualizado com sucesso');
+    history.push(`/meetups/${data.id}`);
+  } catch (error) {
+    toast.error('Falha ao criar meetup');
+  }
+}
+
 export default all([
   takeLatest('@meetup/REQUEST', meetup),
   takeLatest('@meetup/CREATE_REQUEST', createMeetup),
   takeLatest('@meetup/DELETE_REQUEST', deleteMeetup),
+  takeLatest('@meetup/UPDATE_REQUEST', updateMeetup),
 ]);

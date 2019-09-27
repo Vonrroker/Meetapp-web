@@ -5,6 +5,7 @@ export const Container = styled.div`
   margin-top: 50px;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 4px;
+  overflow: hidden;
 
   label {
     display: flex;

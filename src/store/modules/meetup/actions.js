@@ -38,3 +38,17 @@ export function meetupDeleteSuccess(id) {
     payload: { id },
   };
 }
+
+export function meetupUpdateRequest(meetup) {
+  return {
+    type: '@meetup/UPDATE_REQUEST',
+    payload: { meetup },
+  };
+}
+
+export function meetupUpdateSuccess(meetup) {
+  return {
+    type: '@meetup/UPDATE_SUCCESS',
+    payload: { meetup },
+  };
+}

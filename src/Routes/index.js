@@ -7,13 +7,14 @@ import SignUp from '../pages/SignUp';
 import Route from './Route';
 import Details from '~/pages/Meetups/Details';
 import MeetupForm from '~/pages/Meetups/MeetupForm';
+import Editar from '~/pages/Meetups/Editar';
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
       <Route path="/meetups" exact component={Meetups} isPrivate />
-      <Route path="/meetups/:id/edit" component={MeetupForm} isPrivate />
+      <Route path="/meetups/:id/edit" component={Editar} isPrivate />
       <Route path="/meetups/new" component={MeetupForm} isPrivate />
       <Route path="/meetups/:id" component={Details} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
