@@ -12,6 +12,7 @@ export const Container = styled.div`
 
     input {
       height: 50px;
+      width: 100%;
       border: 0;
       background: rgba(0, 0, 0, 0.2);
       border-radius: 4px;
@@ -42,6 +43,7 @@ export const Container = styled.div`
         color: rgba(255, 255, 255, 0.5);
       }
     }
+
     .buttonSubmit {
       display: flex;
       justify-content: flex-end;

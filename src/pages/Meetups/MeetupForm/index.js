@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
 
-import { parseISO } from 'date-fns';
 import { Container } from './styles';
 import BannerInput from './BannerInput';
 import {
@@ -11,14 +11,10 @@ import {
 } from '~/store/modules/meetup/actions';
 import DatePicker from './DatePicker';
 
-export default function MeetupForm(initial) {
+export default function MeetupForm({ initial, edit }) {
   const dispatch = useDispatch();
-  console.tron.log(initial);
-
-  const initialData = { ...initial, date: parseISO(initial.date) };
-
   function handleSubmit(data) {
-    if (initial.edit) {
+    if (edit) {
       dispatch(meetupUpdateRequest({ ...data, id: initial.id }));
     } else {
       dispatch(meetupCreateRequest(data));
@@ -27,11 +23,7 @@ export default function MeetupForm(initial) {
 
   return (
     <Container>
-      <Form
-        initialData={initialData}
-        onSubmit={handleSubmit}
-        autoComplete="off"
-      >
+      <Form initialData={initial} onSubmit={handleSubmit} autoComplete="off">
         <BannerInput name="banner_id" />
         <Input name="title" placeholder="Titulo do meetup" />
         <Input multiline name="description" placeholder="Titulo do meetup" />
@@ -44,3 +36,13 @@ export default function MeetupForm(initial) {
     </Container>
   );
 }
+
+MeetupForm.propTypes = {
+  initial: PropTypes.shape(),
+  edit: PropTypes.bool,
+};
+
+MeetupForm.defaultProps = {
+  initial: {},
+  edit: false,
+};

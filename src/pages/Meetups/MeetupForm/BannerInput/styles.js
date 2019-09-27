@@ -13,6 +13,7 @@ export const Container = styled.div`
     align-items: center;
 
     width: 100%;
+    height: 100%;
     cursor: pointer;
     font-size: 20px;
     line-height: 23px;

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import ReactDatePicker from 'react-datepicker';
 import pt from 'date-fns/locale/pt';
 
@@ -6,7 +7,6 @@ import { useField } from '@rocketseat/unform';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-// eslint-disable-next-line react/prop-types
 export default function DatePicker({ name }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue } = useField(name);
@@ -23,6 +23,7 @@ export default function DatePicker({ name }) {
     });
   }, [ref.current, fieldName]); // eslint-disable-line
 
+  console.tron.log(selected);
   return (
     <ReactDatePicker
       name={fieldName}
@@ -34,7 +35,12 @@ export default function DatePicker({ name }) {
       timeIntervals={15}
       timeCaption="Hora"
       dateFormat="d 'de' MMMM, yyyy HH:mm"
+      placeholderText="Data do meetup"
       ref={ref}
     />
   );
 }
+
+DatePicker.propTypes = {
+  name: PropTypes.string.isRequired,
+};
