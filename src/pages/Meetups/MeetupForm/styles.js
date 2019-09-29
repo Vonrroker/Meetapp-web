@@ -25,6 +25,10 @@ export const Container = styled.div`
       &::placeholder {
         color: rgba(255, 255, 255, 0.5);
       }
+
+      &:focus {
+        border: 2px solid #f94d6a;
+      }
     }
 
     textarea {
@@ -42,6 +46,10 @@ export const Container = styled.div`
       &::placeholder {
         color: rgba(255, 255, 255, 0.5);
       }
+
+      &:focus {
+        border: 2px solid #f94d6a;
+      }
     }
 
     .buttonSubmit {
@@ -58,6 +66,12 @@ export const Container = styled.div`
         margin-top: 20px;
         margin-bottom: 50px;
       }
+    }
+
+    span {
+      margin: 5px;
+      padding-left: 10px;
+      color: rgba(249, 77, 106, 0.7);
     }
   }
 `;

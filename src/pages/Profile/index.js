@@ -1,9 +1,26 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 
 import { Container } from './styles';
 import { userUpdateRequest } from '~/store/modules/user/actions';
+
+const schema = Yup.object().shape({
+  name: Yup.string(),
+  email: Yup.string().email('Insira um email válido.'),
+  oldPassword: Yup.string().when('password', (password, field) =>
+    password
+      ? field.required('Insira sua senha atual para alterar a senha')
+      : field
+  ),
+  password: Yup.string().min(6, 'A senha deve ter no mínimo 6 caracteres.'),
+  confirmPassword: Yup.string().when('password', (password, field) =>
+    password
+      ? field.required().oneOf([Yup.ref('password')], 'Senhas diferentes')
+      : field
+  ),
+});
 
 export default function Profile() {
   const user = useSelector(state => state.user);
@@ -16,10 +33,10 @@ export default function Profile() {
 
   return (
     <Container>
-      <Form initialData={user} onSubmit={handleSumit}>
+      <Form initialData={user} schema={schema} onSubmit={handleSumit}>
         <Input name="name" placeholder="Seu nome" />
         <Input name="email" placeholder="Seu email" />
-        <span />
+        <p />
         <Input type="password" name="oldPassword" placeholder="Senha atual" />
         <Input type="password" name="password" placeholder="Nova senha" />
         <Input

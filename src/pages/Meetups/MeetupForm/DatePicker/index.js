@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export default function DatePicker({ name }) {
   const ref = useRef(null);
-  const { fieldName, registerField, defaultValue } = useField(name);
+  const { fieldName, registerField, defaultValue, error } = useField(name);
   const [selected, setSelected] = useState(defaultValue);
 
   useEffect(() => {
@@ -23,21 +23,23 @@ export default function DatePicker({ name }) {
     });
   }, [ref.current, fieldName]); // eslint-disable-line
 
-  console.tron.log(selected);
   return (
-    <ReactDatePicker
-      name={fieldName}
-      selected={selected}
-      onChange={date => setSelected(date)}
-      locale={pt}
-      showTimeSelect
-      timeFormat="HH:mm"
-      timeIntervals={15}
-      timeCaption="Hora"
-      dateFormat="d 'de' MMMM, yyyy HH:mm"
-      placeholderText="Data do meetup"
-      ref={ref}
-    />
+    <>
+      <ReactDatePicker
+        name={fieldName}
+        selected={selected}
+        onChange={date => setSelected(date)}
+        locale={pt}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={15}
+        timeCaption="Hora"
+        dateFormat="d 'de' MMMM, yyyy HH:mm"
+        placeholderText="Data do meetup"
+        ref={ref}
+      />
+      {error && <span>{error}</span>}
+    </>
   );
 }
 

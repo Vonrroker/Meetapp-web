@@ -21,9 +21,13 @@ export const Container = styled.div`
       &::placeholder {
         color: rgba(255, 255, 255, 0.5);
       }
+
+      &:focus {
+        border: 2px solid #f94d6a;
+      }
     }
 
-    span {
+    p {
       border: 1px solid rgba(255, 255, 255, 0.1);
       margin-top: 20px;
       margin-bottom: 19px;
@@ -40,6 +44,12 @@ export const Container = styled.div`
         background: #f94d6a;
         border-radius: 4px;
       }
+    }
+
+    span {
+      margin: 5px;
+      padding-left: 10px;
+      color: rgba(249, 77, 106, 0.7);
     }
   }
 `;
