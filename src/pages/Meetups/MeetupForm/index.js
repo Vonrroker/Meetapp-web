@@ -16,7 +16,7 @@ const schema = Yup.object().shape({
   banner_id: Yup.number().required('Banner obrigatório'),
   title: Yup.string().required('O meetup precisa ter um título.'),
   description: Yup.string().required('O meetup precisa ter uma descrição'),
-  date: Yup.date().required('O meetup precisa ter uma data.'),
+  date: Yup.date('Data inválida').required('O meetup precisa ter uma data.'),
   locale: Yup.string().required('O meetup precisa ter um local'),
 });
 
