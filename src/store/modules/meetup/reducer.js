@@ -48,7 +48,6 @@ export default function meetup(state = INITIAL_STATE, action) {
         const index = draft.meetups.findIndex(m => String(m.id) === String(id));
 
         draft.meetups.splice(index, 1);
-        console.tron.log('chegou1');
         break;
       }
 
